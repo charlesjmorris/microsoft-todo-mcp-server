@@ -855,18 +855,19 @@ server.tool(
         }
       }
 
-      // Build the query parameters
-      const queryParams = new URLSearchParams()
+      // Build the query parameters manually to avoid URLSearchParams percent-encoding
+      // the $ in OData param names ($filter, $select, etc.) which breaks the Graph API
+      const queryParts: string[] = []
 
-      if (filter) queryParams.append("$filter", filter)
-      if (select) queryParams.append("$select", select)
-      if (orderby) queryParams.append("$orderby", orderby)
-      if (top !== undefined) queryParams.append("$top", top.toString())
-      if (skip !== undefined) queryParams.append("$skip", skip.toString())
-      if (count !== undefined) queryParams.append("$count", count.toString())
+      if (filter) queryParts.push(`$filter=${filter}`)
+      if (select) queryParts.push(`$select=${select}`)
+      if (orderby) queryParts.push(`$orderby=${orderby}`)
+      if (top !== undefined) queryParts.push(`$top=${top}`)
+      if (skip !== undefined) queryParts.push(`$skip=${skip}`)
+      if (count !== undefined) queryParts.push(`$count=${count}`)
 
       // Construct the URL with query parameters
-      const queryString = queryParams.toString()
+      const queryString = queryParts.join("&")
       const url = `${MS_GRAPH_BASE}/me/todo/lists/${listId}/tasks${queryString ? "?" + queryString : ""}`
 
       console.error(`Making request to: ${url}`)

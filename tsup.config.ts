@@ -10,14 +10,14 @@ export default defineConfig({
     'src/token-manager.ts'
   ],
   outDir: 'dist',
-  format: ['esm'],
+  format: ['cjs'],
   platform: 'node',
   target: 'node18',
   shims: true,
   clean: true,
   splitting: false,
   sourcemap: true,
-  dts: true,
+  dts: false,
   external: ['dotenv'],
   esbuildOptions(options) {
     options.platform = 'node'

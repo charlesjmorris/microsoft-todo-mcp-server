@@ -1,0 +1,19 @@
+# Source files
+src/
+tsup.config.*
+tsconfig.json
+*.md
+.prettierrc*
+.gitignore
+.git/
+
+# Build artifacts we don't need
+dist/*.map
+dist/*.d.ts
+dist/*.d.cts
+
+# Dev-only dependencies
+node_modules/typescript/
+node_modules/tsup/
+node_modules/prettier/
+node_modules/@types/

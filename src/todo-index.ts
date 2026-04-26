@@ -99,7 +99,7 @@ but API access is restricted for personal accounts.
     return data as T
   } catch (error) {
     console.error("Error making Graph API request:", error)
-    return null
+    throw error
   }
 }
 

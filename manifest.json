@@ -1,0 +1,19 @@
+{
+  "manifest_version": "0.3",
+  "name": "microsoft-todo-charles",
+  "display_name": "Microsoft To Do",
+  "version": "0.1.0",
+  "description": "Connect Claude to Microsoft To Do for task management across lists and projects.",
+  "author": {
+    "name": "Charles Morris"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/cli.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/cli.js"]
+    }
+  },
+  "tools_generated": true
+}
